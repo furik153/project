@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кошик покупок</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><i class="fas fa-shopping-cart"></i> Кошик покупок</h1>
+                    <p class="tagline">Товари, які ви обрали для покупки</p>
+                </div>
+                <div class="cart-icon-container">
+                    <a href="index.html" class="cart-link">
+                        <i class="fas fa-store"></i>
+                        <span class="cart-text">На головну</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="cart-container">
+            <div class="cart-header">
+                <h2>Ваші товари в кошику</h2>
+                <div class="cart-summary">
+                    <div class="summary-item">
+                        <span>Кількість товарів:</span>
+                        <span id="total-items">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Загальна сума:</span>
+                        <span id="total-price">0 ₴</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart-items" id="cart-items">
+                <div class="empty-cart-message" id="empty-cart-message">
+                    <i class="fas fa-shopping-cart fa-3x"></i>
+                    <h3>Ваш кошик порожній</h3>
+                    <p>Додайте товари з головної сторінки, щоб зробити замовлення</p>
+                    <a href="index.html" class="btn-back-to-shop">
+                        <i class="fas fa-arrow-left"></i> Перейти до покупок
+                    </a>
+                </div>
+            </div>
+
+            <div class="cart-actions" id="cart-actions" style="display: none;">
+                <button class="btn-clear-cart" id="clear-cart-btn">
+                    <i class="fas fa-trash-alt"></i> Очистити кошик
+                </button>
+                <button class="btn-checkout">
+                    <i class="fas fa-credit-card"></i> Оформити замовлення
+                </button>
+            </div>
+        </div>
+
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Магазин "Універсальний" &copy; 2023 Всі права захищені</p>
+            <p>Контакти: +38 (044) 123-45-67 | info@universal-shop.com.ua</p>
+            <p>Адреса: м. Київ, вул. Прикладна, 10</p>
+        </div>
+    </footer>
+
+    <script src="cart.js"></script>
+    <script src="cart-page.js"></script>
+</body>
+</html>
