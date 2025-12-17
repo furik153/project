@@ -1,7 +1,5 @@
-document.addEventListener('DOMContentLoaded', function () {
-
+document.addEventListener('DOMContentLoaded', () => {
     displayCartItems();
-
 
     const clearCartBtn = document.getElementById('clear-cart-btn');
     if (clearCartBtn) {
@@ -14,183 +12,143 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-
 function displayCartItems() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartItemsContainer = document.getElementById('cart-items');
-    const emptyCartMessage = document.getElementById('empty-cart-message');
+    const emptyMessage = document.getElementById('empty-cart-message');
     const cartActions = document.getElementById('cart-actions');
 
+    if (!cartItemsContainer) return;
 
     cartItemsContainer.innerHTML = '';
 
     if (cart.length === 0) {
-        emptyCartMessage.style.display = 'block';
-        cartActions.style.display = 'none';
-
-
+        if (emptyMessage) emptyMessage.style.display = 'block';
+        if (cartActions) cartActions.style.display = 'none';
         updateCartSummary(0, 0);
         return;
     }
 
-
-    emptyCartMessage.style.display = 'none';
-    cartActions.style.display = 'flex';
+    if (emptyMessage) emptyMessage.style.display = 'none';
+    if (cartActions) cartActions.style.display = 'flex';
 
     let totalItems = 0;
     let totalPrice = 0;
 
-
     cart.forEach(item => {
-        const itemTotal = item.price * item.quantity;
         totalItems += item.quantity;
-        totalPrice += itemTotal;
+        totalPrice += Number(item.price) * item.quantity;
 
-        const cartItemElement = document.createElement('div');
-        cartItemElement.className = 'cart-item';
-        cartItemElement.setAttribute('data-id', item.id);
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
 
+        cartItem.innerHTML = `
+            <h4>${item.name}</h4>
+            <button class="decrease-quantity" data-id="${item.id}">−</button>
+            <span>${item.quantity}</span>
+            <button class="increase-quantity" data-id="${item.id}">+</button>
+        `;
 
-        cartItemsContainer.appendChild(cartItemElement);
+        cartItemsContainer.appendChild(cartItem);
     });
 
     addCartItemEventListeners();
-
-
     updateCartSummary(totalItems, totalPrice);
 }
-
 function addCartItemEventListeners() {
+    document.querySelectorAll('.decrease-quantity').forEach(btn =>
+        btn.addEventListener('click', () =>
+            updateCartItemQuantity(btn.dataset.id, -1)
+        )
+    );
 
-    const decreaseButtons = document.querySelectorAll('.decrease-quantity');
-    decreaseButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const productId = this.getAttribute('data-id');
-            updateCartItemQuantity(productId, -1);
-        });
-    });
+    document.querySelectorAll('.increase-quantity').forEach(btn =>
+        btn.addEventListener('click', () =>
+            updateCartItemQuantity(btn.dataset.id, 1)
+        )
+    );
 
-    const increaseButtons = document.querySelectorAll('.increase-quantity');
-    increaseButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const productId = this.getAttribute('data-id');
-            updateCartItemQuantity(productId, 1);
-        });
-    });
-
-    const removeButtons = document.querySelectorAll('.remove-item-btn');
-    removeButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const productId = this.getAttribute('data-id');
-            removeCartItem(productId);
-        });
-    });
+    document.querySelectorAll('.remove-item-btn').forEach(btn =>
+        btn.addEventListener('click', () =>
+            removeCartItem(btn.dataset.id)
+        )
+    );
 }
 
-function updateCartItemQuantity(productId, change) {
+function updateCartItemQuantity(id, change) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const itemIndex = cart.findIndex(item => item.id === productId);
+    const item = cart.find(item => item.id === id);
 
-    if (itemIndex !== -1) {
-        cart[itemIndex].quantity += change;
+    if (!item) return;
 
+    item.quantity += change;
 
-        if (cart[itemIndex].quantity < 1) {
-            cart.splice(itemIndex, 1);
-        }
-
-
-        localStorage.setItem('cart', JSON.stringify(cart));
-
-
-        displayCartItems();
-
-        if (typeof updateCartCount === 'function') {
-            updateCartCount();
-        }
+    if (item.quantity < 1) {
+        cart = cart.filter(i => i.id !== id);
     }
-}
-
-function removeCartItem(productId) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart = cart.filter(item => item.id !== productId);
-
 
     localStorage.setItem('cart', JSON.stringify(cart));
-
-
     displayCartItems();
+    updateCartCount?.();
+}
 
-    if (typeof updateCartCount === 'function') {
-        updateCartCount();
-    }
+function removeCartItem(id) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart = cart.filter(item => item.id !== id);
 
+    localStorage.setItem('cart', JSON.stringify(cart));
+    displayCartItems();
+    updateCartCount?.();
 
     showNotification('Товар видалено з кошика');
 }
 
 function clearCart() {
-    if (confirm('Ви впевнені, що хочете очистити кошик?')) {
-        localStorage.removeItem('cart');
-        displayCartItems();
+    if (!confirm('Ви впевнені, що хочете очистити кошик?')) return;
 
+    localStorage.removeItem('cart');
+    displayCartItems();
+    updateCartCount?.();
 
-        if (typeof updateCartCount === 'function') {
-            updateCartCount();
-        }
-
-
-        showNotification('Кошик очищено');
-    }
+    showNotification('Кошик очищено');
 }
-
 
 function checkout() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     if (cart.length === 0) {
-        alert('Ваш кошик порожній. Додайте товари перед оформленням замовлення.');
+        alert('Ваш кошик порожній');
         return;
     }
 
-    const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+    const total = cart.reduce(
+        (sum, item) => sum + Number(item.price) * item.quantity,
+        0
+    );
 
-
-
-    if (typeof updateCartCount === 'function') {
-        updateCartCount();
-    }
+    alert(`Замовлення оформлено на суму ${formatPrice(total)} ₴`);
 }
 
 function updateCartSummary(totalItems, totalPrice) {
-    const totalItemsElement = document.getElementById('total-items');
-    const totalPriceElement = document.getElementById('total-price');
-
-    if (totalItemsElement) {
-        totalItemsElement.textContent = totalItems;
-    }
-
-    if (totalPriceElement) {
-        totalPriceElement.textContent = $formatPrice(totalPrice)
-    };
+    document.getElementById('total-items').textContent = totalItems;
+    document.getElementById('total-price').textContent = formatPrice(totalPrice);
 }
-
-
 
 function formatPrice(price) {
-    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
 
+function showNotification(text) {
+    const notification = document.createElement('div');
+    notification.className = 'cart-notification';
+    notification.textContent = text;
 
-document.body.appendChild(notification);
+    document.body.appendChild(notification);
 
-setTimeout(() => {
-    notification.style.transform = 'translateX(0)';
-}, 10);
+    setTimeout(() => notification.classList.add('show'), 10);
 
-setTimeout(() => {
-    notification.style.transform = 'translateX(150%)';
     setTimeout(() => {
-        document.body.removeChild(notification);
-    }, 300);
-}, 3000);
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}

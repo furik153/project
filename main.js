@@ -1,73 +1,60 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     updateCartCount();
-    
 
-    const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-    
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const productId = this.getAttribute('data-id');
-            const productName = this.getAttribute('data-name');
-            const productPrice = parseInt(this.getAttribute('data-price'));
-            
-            addToCart(productId, productName, productPrice);
-            
-            
-            const originalText = this.innerHTML;
-            this.innerHTML = '<i class="fas fa-check"></i> Додано!';
-            this.style.backgroundColor = '#2ecc71';
-            
-            setTimeout(() => {
-                this.innerHTML = originalText;
-                this.style.backgroundColor = '';
-            }, 1500);
+    const buttons = document.querySelectorAll('.add-to-cart-btn');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const id = button.dataset.id;
+            const name = button.dataset.name;
+            const price = Number(button.dataset.price);
+
+            addToCart(id, name, price);
+            animateButton(button);
         });
     });
 });
 
 function addToCart(id, name, price) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    
- 
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
     const existingItem = cart.find(item => item.id === id);
-    
+
     if (existingItem) {
         existingItem.quantity += 1;
     } else {
         cart.push({
-            id: id,
-            name: name,
-            price: price,
+            id,
+            name,
+            price,
             quantity: 1
         });
     }
-    
-    
+
     localStorage.setItem('cart', JSON.stringify(cart));
-
     updateCartCount();
-
+}
 
 function updateCartCount() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-    
-    const cartCountElement = document.querySelector('.cart-count');
-    if (cartCountElement) {
-        cartCountElement.textContent = totalItems;
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+    const cartCount = document.querySelector('.cart-count');
+    if (cartCount) {
+        cartCount.textContent = totalItems;
     }
 }
 
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
-    }, 10);
+function animateButton(button) {
+    const originalHTML = button.innerHTML;
+
+    button.innerHTML = '<i class="fas fa-check"></i> додано!';
+    button.disabled = true;
+    button.style.backgroundColor = '#2ecc71';
 
     setTimeout(() => {
-        notification.style.transform = 'translateX(150%)';
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
-    }, 3000);
+        button.innerHTML = originalHTML;
+        button.disabled = false;
+        button.style.backgroundColor = '';
+    }, 1200);
 }
