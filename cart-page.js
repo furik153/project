@@ -137,18 +137,8 @@ function updateCartSummary(totalItems, totalPrice) {
 function formatPrice(price) {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
-
-function showNotification(text) {
-    const notification = document.createElement('div');
-    notification.className = 'cart-notification';
-    notification.textContent = text;
-
-    document.body.appendChild(notification);
-
-    setTimeout(() => notification.classList.add('show'), 10);
-
-    setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => notification.remove(), 300);
-    }, 3000);
-}
+document.getElementById('checkout-btn').addEventListener('click', function() {
+    alert('Дякую за покупку!');
+    localStorage.removeItem('cart');
+    location.reload();
+});

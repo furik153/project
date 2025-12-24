@@ -534,11 +534,7 @@ footer p:last-child {
         justify-content: center;
     }
 }
-/* ================== */
-/* СТОРІНКА КОШИКА */
-/* ================== */
 
-/* Основний контейнер кошика */
 .cart-container {
     background: white;
     border-radius: 16px;
@@ -548,7 +544,6 @@ footer p:last-child {
     border: 1px solid #eaeaea;
 }
 
-/* Заголовок кошика */
 .cart-header {
     display: flex;
     justify-content: space-between;
@@ -572,7 +567,7 @@ footer p:last-child {
     font-size: 2rem;
 }
 
-/* Блок з підсумками */
+
 .cart-summary {
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     padding: 25px 30px;
@@ -615,7 +610,6 @@ footer p:last-child {
     font-size: 2.2rem;
 }
 
-/* Розділ з товарами */
 .cart-items-section {
     margin-bottom: 40px;
 }
@@ -635,12 +629,11 @@ footer p:last-child {
     color: #3498db;
 }
 
-/* Список товарів у кошику */
 .cart-items {
     min-height: 300px;
 }
 
-/* Повідомлення про порожній кошик */
+
 .empty-cart-message {
     text-align: center;
     padding: 80px 20px;
@@ -667,7 +660,7 @@ footer p:last-child {
     line-height: 1.6;
 }
 
-/* Картка товару в кошику */
+
 .cart-item {
     background: white;
     border-radius: 12px;
@@ -810,7 +803,6 @@ footer p:last-child {
     border-color: #e74c3c;
 }
 
-/* Дії з кошиком */
 .cart-actions {
     display: flex;
     justify-content: space-between;
@@ -829,7 +821,6 @@ footer p:last-child {
     text-align: right;
 }
 
-/* Кнопки */
 .btn-primary, .btn-secondary, .btn-small {
     padding: 14px 28px;
     border: none;
@@ -877,7 +868,6 @@ footer p:last-child {
     font-size: 0.9rem;
 }
 
-/* Промокод та доставка */
 .cart-promo {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -945,8 +935,6 @@ footer p:last-child {
 .delivery-option input {
     margin: 0;
 }
-
-/* Переваги */
 .cart-benefits {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -987,7 +975,6 @@ footer p:last-child {
     font-size: 0.95rem;
     line-height: 1.5;
 }
-/* Футер */
 .footer-content {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1022,7 +1009,6 @@ footer p:last-child {
     font-size: 0.9rem;
 }
 
-/* Адаптивність для кошика */
 @media (max-width: 1200px) {
     .cart-summary {
         grid-template-columns: repeat(2, 1fr);
