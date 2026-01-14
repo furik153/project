@@ -1,173 +1,256 @@
 <!DOCTYPE html>
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Магазин товарів - Головна</title>
+    <title>ElyBox.pro — Російський Minecraft сервер</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <h1><i class="fas fa-shopping-bag"></i> Магазин "Універсальний"</h1>
-                    <p class="tagline">Якісні товари за доступними цінами</p>
+    <!-- Навігаційне меню -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-cube"></i>
+                    <i class="fas fa-cube"></i>
+                    <i class="fas fa-cube"></i>
                 </div>
-                <div class="cart-icon-container">
-                    <a href="cart.html" class="cart-link">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">0</span>
-                        <span class="cart-text">Кошик</span>
-                    </a>
+                <span>ElyBox.pro</span>
+            </a>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Головна</a></li>
+                <li><a href="rules.html"><i class="fas fa-book"></i> Правила</a></li>
+                <li><a href="gallery.html"><i class="fas fa-images"></i> Галерея</a></li>
+                <li><a href="#connect"><i class="fas fa-plug"></i> Підключитися</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Головний банер -->
+    <header class="hero">
+        <div class="container">
+            <h1 class="hero-title">Ласкаво просимо на <span class="highlight">ElyBox.pro</span></h1>
+            <p class="hero-subtitle">Найкращий Російський Minecraft сервер з 2022 року</p>
+            
+            <div class="server-info">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Онлайн гравці</h3>
+                        <p class="online-count" id="onlineCount">24 гравці онлайн</p>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>IP Адреса</h3>
+                        <p class="ip-address" id="ipAddress">play.elybox.pro</p>
+                        <button class="copy-btn" onclick="copyIP()">Копіювати</button>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Версія</h3>
+                        <p>1.21.x</p>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
+    <!-- Основний контент -->
     <main class="container">
-        <div class="products-grid">
-
-            <div class="product-card" data-id="1">
-                <div class="product-image">
-                    <img src="https://ireland.apollo.olxcdn.com/v1/files/ruifwhzipbzv-UA/image"
-                        alt="Смартфон">
+        <section class="about-section">
+            <h2><i class="fas fa-info-circle"></i> Про наш сервер</h2>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p><strong>ElyBox.pro</strong> — це унікальний україномовний проект, де поєднуються класичний геймплій, якісні плагіни та справедлива адміністрація.</p>
+                    
+                    <div class="features-grid">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h4>Захист від гриферів</h4>
+                            <p>Система захисту територій та аудит логують усі дії</p>
+                            </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <h4>Економіка</h4>
+                            <p>Збалансована система торгівлі та робочих місць</p>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-chess-queen"></i>
+                            </div>
+                            <h4>Квести та івенти</h4>
+                            <p>Регулярні події та сюжетні завдання</p>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h4>Підтримка</h4>
+                            <p>Адміністрація завжди готова допомогти</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="product-info">
-                    <h3 class="product-title">Смартфон X10 Pro</h3>
-                    <p class="product-description">Потужний смартфон з 6.7-дюймовим дисплеєм, потрійною камерою та
-                        батареєю на 5000 мАг.</p>
-                    <div class="product-price">15 999 </div>
-                    <button class="add-to-cart-btn" data-id="1" data-name="Смартфон X10 Pro" data-price="15999">
-                        <i class="fas fa-cart-plus"></i> Додати до кошика
-                    </button>
-                </div>
-            </div>
-
-
-            <div class="product-card" data-id="2">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
-                        alt="Ноутбук">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Ноутбук UltraBook</h3>
-                    <p class="product-description">Легкий та потужний ноутбук з процесором Intel Core i7, 16 ГБ
-                        оперативної пам'яті та SSD на 512 ГБ.</p>
-                    <div class="product-price">32 499 </div>
-                    <button class="add-to-cart-btn" data-id="2" data-name="Ноутбук UltraBook" data-price="32499">
-                        <i class="fas fa-cart-plus"></i> Додати до кошика
-                    </button>
-                </div>
-            </div>
-
-
-            <div class="product-card" data-id="3">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
-                        alt="Навушники">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Бездротові навушники</h3>
-                    <p class="product-description">Навушники з шумозаглушенням, часом автономної роботи до 30 годин та
-                        високоякісним звуком.</p>
-                    <div class="product-price">4 299 </div>
-                    <button class="add-to-cart-btn" data-id="3" data-name="Бездротові навушники" data-price="4299">
-                        <i class="fas fa-cart-plus"></i> Додати до кошика
-                    </button>
-                </div>
-            </div>
-
-            <div class="product-card" data-id="4">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
-                        alt="Фотоапарат">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Дзеркальний фотоапарат</h3>
-                    <p class="product-description">Професійний фотоапарат з об'єктивом 24-70мм, сенсором 24 Мп та
-                        можливістю зйомки 4K відео.</p>
-                    <div class="product-price">28 750 </div>
-                    <button class="add-to-cart-btn" data-id="4" data-name="Дзеркальний фотоапарат" data-price="28750">
-                    </button>
+                
+                <div class="about-visual">
+                    <div class="minecraft-block">
+                        <div class="block-face front">
+                            <div class="block-pixel" style="--color: #7CFC00"></div>
+                            <div class="block-pixel" style="--color: #32CD32"></div>
+                            <div class="block-pixel" style="--color: #228B22"></div>
+                        </div>
+                        <div class="block-face top"></div>
+                        <div class="block-face side"></div>
+                    </div>
+                    <p class="visual-label">Наш сервер у стилі Minecraft</p>
                 </div>
             </div>
+        </section>
 
-            <div class="product-card" data-id="5">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
-                        alt="Кросівки">
+        <section class="connect-section" id="connect">
+            <h2><i class="fas fa-plug"></i> Як приєднатися?</h2>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Запустіть Minecraft</h3>
+                    <p>Версія 1.21.x (рекомендовано 1.21)</p>
                 </div>
-                <div class="product-info">
-                    <h3 class="product-title">Спортивні кросівки</h3>
-                    <p class="product-description">Зручні кросівки для бігу з амортизацією, вентиляцією та стійкою
-                        підошвою. Доступні в різних кольорах.</p>
-                    <div class="product-price">2 499 </div>
-                    <button class="add-to-cart-btn" data-id="5" data-name="Спортивні кросівки" data-price="2499">
-                        <i class="fas fa-cart-plus"></i> Додати до кошика
-                    </button>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-plus-circle"></i>
+                    </div>
+                    <h3>Додайте сервер</h3>
+                    <p>В меню Multiplayer натисніть "Add Server"</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-keyboard"></i>
+                    </div>
+                    <h3>Введіть адресу</h3>
+                    <p class="server-address">play.elybox.pro</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <h3>Грайте!</h3>
+                    <p>Приєднуйтесь до нашої спільноти</p>
                 </div>
             </div>
-
-            <div class="product-card" data-id="6">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
-                        alt="Смарт-годинник">
+        </section>
+        
+        <section class="stats-section">
+            <h2><i class="fas fa-chart-bar"></i> Статистика сервера</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">500+</div>
+                    <div class="stat-label">Зареєстрованих гравців</div>
                 </div>
-                <div class="product-info">
-                    <h3 class="product-title">Смарт-годинник Watch Pro</h3>
-                    <p class="product-description">Годинник з моніторингом здоров'я, GPS, відстеженням сну та підтримкою
-                        сповіщень зі смартфону.</p>
-                    <div class="product-price">6 899 </div>
-                    <button class="add-to-cart-btn" data-id="6" data-name="Смарт-годинник Watch Pro" data-price="6899">
-                        <i class="fas fa-cart-plus"></i> Додати до кошика
-                    </button>
+                
+                <div class="stat-card">
+                    <div class="stat-value">2+</div>
+                    <div class="stat-label">Роки роботи</div>
                 </div>
-            </div>
-
-
-            <div class="product-card" data-id="7">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1543512214-318c7553f230?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
-                        alt="Книга">
+                
+                <div class="stat-card">
+                    <div class="stat-value">24/7</div>
+                    <div class="stat-label">Онлайн робота</div>
                 </div>
-                <div class="product-info">
-                    <h3 class="product-title">Електронна книга</h3>
-                    <p class="product-description">Читалка з 7-дюймовим дисплеєм E-Ink, підсвічуванням та підтримкою
-                        тисяч форматів книг.</p>
-                    <div class="product-price">5 299 </div>
-                    <button class="add-to-cart-btn" data-id="7" data-name="Електронна книга" data-price="5299">
-                        <i class="fas fa-cart-plus"></i> Додати до кошика
-                    </button>
+                
+                <div class="stat-card">
+                    <div class="stat-value">3+</div>
+                    <div class="stat-label">Побудованих міст</div>
                 </div>
             </div>
-            <div class="product-card" data-id="8">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
-                        alt="Будильник">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Розумний будильник</h3>
-                    <p class="product-description">Будильник з проекцією часу на стелю, радіо, Bluetooth та поступовим
-                        підвищенням яскравості.</p>
-                    <div class="product-price">1 850 </div>
-                    <button class="add-to-cart-btn" data-id="8" data-name="Розумний будильник" data-price="1850">
-                        <i class="fas fa-cart-plus"></i> Додати до кошика
-                    </button>
-                </div>
-            </div>
-        </div>
+        </section>
     </main>
 
+    <!-- Футер -->
     <footer>
         <div class="container">
-            <p>Магазин "Універсальний" &copy; 2025 Всі права захищені</p>
-            <p>Контакти: +38 (044) 123-45-67 | info@universal-shop.com.ua</p>
-            <p>Адреса: м. Київ, вул. Прикладна, 10</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ElyBox.pro</h3>
+                    <p>Російський Minecraft сервер з 2025року</p>
+                    <div class="social-links">
+                        <a href="#" title="Discord" class="social-link">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="#" title="Telegram" class="social-link">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" title="YouTube" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Корисні посилання</h3>
+                    <ul>
+                        <li><a href="rules.html"><i class="fas fa-chevron-right"></i> Правила сервера</a></li>
+                        <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Галерея</a></li>
+                        <li><a href="#connect"><i class="fas fa-chevron-right"></i> Як приєднатися?</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Статистика</h3>
+                    <ul>
+                        <li><i class="fas fa-calendar-alt"></i> Запущено: 2022 рік</li>
+                        <li><i class="fas fa-map"></i> Режим: Survival</li>
+                        <li><i class="fas fa-language"></i> Мова: русский</li>
+                        <li><i class="fas fa-code"></i> Версія: 1.21.x</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2022-2025ElyBox.pro — Російський Minecraft сервер. Це не офіційний сайт Minecraft.</p>
+            </div>
         </div>
     </footer>
 
-    <script src="cart-page.js"></script>
-    <script src="main.js"></script>
+    <!-- Вікно сповіщення -->
+    <div id="notification" class="notification"></div>
+
+    <script src="script.js"></script>
 </body>
 </html>

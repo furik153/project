@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Галерея — ElyBox.pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-cube"></i>
+                    <i class="fas fa-cube"></i>
+                    <i class="fas fa-cube"></i>
+                </div>
+                <span>ElyBox.pro</span>
+            </a>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Головна</a></li>
+                <li><a href="rules.html"><i class="fas fa-book"></i> Правила</a></li>
+                <li><a href="gallery.html" class="active"><i class="fas fa-images"></i> Галерея</a></li>
+                <li><a href="index.html#connect"><i class="fas fa-plug"></i> Підключитися</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="page-header">
+            <h1><i class="fas fa-camera"></i> Галерея сервера</h1>
+            <p>Погляньте на найкращі моменти та будівлі з нашого сервера</p>
+            
+            <div class="gallery-controls">
+                <button class="filter-btn active" data-filter="all">Усі</button>
+                <button class="filter-btn" data-filter="builds">Будівлі</button>
+                <button class="filter-btn" data-filter="events">Івенти</button>
+                <button class="filter-btn" data-filter="landscape">Ландшафт</button>
+                <button class="filter-btn" data-filter="players">Гравці</button>
+            </div>
+        </div>
+
+        <div class="gallery-grid">
+            <!-- Будівлі -->
+            <div class="gallery-item" data-category="builds">
+                <div class="gallery-visual">
+                    <div class="minecraft-structure">
+                        <div class="structure-block" style="--color: #8B4513"></div>
+                        <div class="structure-block" style="--color: #D2691E"></div>
+                        <div class="structure-block" style="--color: #A0522D"></div>
+                    </div>
+                </div>
+                <div class="gallery-info">
+                    <h3>Замок на скелі</h3>
+                    <p>Вражаюча споруда, побудована гравцем TheBuilder</p>
+                    <div class="gallery-category">Будівлі</div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="events">
+                <div class="gallery-visual">
+                    <div class="minecraft-structure">
+                        <div class="structure-block" style="--color: #FF0000"></div>
+                        <div class="structure-block" style="--color: #FF4500"></div>
+                        <div class="structure-block" style="--color: #FF6347"></div>
+                    </div>
+                </div>
+                <div class="gallery-info">
+                    <h3>PvP Турнір</h3>
+                    <p>Щомісячний турнір з призами від адміністрації</p>
+                    <div class="gallery-category">Івенти</div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="landscape">
+                <div class="gallery-visual">
+                    <div class="minecraft-structure">
+                        <div class="structure-block" style="--color: #228B22"></div>
+                        <div class="structure-block" style="--color: #32CD32"></div>
+                        <div class="structure-block" style="--color: #7CFC00"></div>
+                    </div>
+                </div>
+                <div class="gallery-info">
+                    <h3>Гірський хребет</h3>
+                    <p>Генерований ландшафт з унікальними печерами</p>
+                    <div class="gallery-category">Ландшафт</div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="players">
+                <div class="gallery-visual">
+                    <div class="players-avatar">
+                        <div class="avatar-head">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="avatar-body">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-info">
+                    <h3>Спільне фото</h3>
+                    <p>Учасники щорічного івенту "Зустріч гравців"</p>
+                    <div class="gallery-category">Гравці</div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="builds">
+                <div class="gallery-visual">
+                    <div class="minecraft-structure">
+                        <div class="structure-block" style="--color: #1E90FF"></div>
+                        <div class="structure-block" style="--color: #00BFFF"></div>
+                        <div class="structure-block" style="--color: #87CEEB"></div>
+                    </div>
+                </div>
+                <div class="gallery-info">
+                    <h3>Підводне місто</h3>
+                    <p>Інноваційна будівля з системою дихання</p>
+                    <div class="gallery-category">Будівлі</div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="events">
+                <div class="gallery-visual">
+                    <div class="minecraft-structure">
+                        <div class="structure-block" style="--color: #FFD700"></div>
+                        <div class="structure-block" style="--color: #FFA500"></div>
+                        <div class="structure-block" style="--color: #FF8C00"></div>
+                    </div>
+                </div>
+                <div class="gallery-info">
+                    <h3>Полювання на скарби</h3>
+                    <p>Щотижневий івент з пошуком схованих скринь</p>
+                    <div class="gallery-category">Івенти</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-upload">
+            <div class="upload-icon">
+                <i class="fas fa-upload"></i>
+            </div>
+            <div class="upload-content">
+                <h3>Маєте цікаві скріншоти?</h3>
+                <p>Надішліть нам свої скріншоти через Discord або Telegram, і ми можемо додати їх до галереї!</p>
+                <a href="#" class="btn-secondary">Написати адміністрації</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ElyBox.pro</h3>
+                    <p>Український Minecraft сервер з 2022 року</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
